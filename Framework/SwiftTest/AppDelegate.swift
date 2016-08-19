@@ -42,7 +42,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         DDLogError("Error \(5)", level: ourLogLevel);
         
-        sharedLogTest()
+        defaultDebugLevel = .Verbose
+        
+        let aDDLogInstance = DDLog()
+        aDDLogInstance.addLogger(DDTTYLogger.sharedInstance())
+        
+        DDLogVerbose("Verbose from aDDLogInstance", ddlog: aDDLogInstance)
+        DDLogInfo("Info from aDDLogInstance", ddlog: aDDLogInstance)
+        DDLogWarn("Warn from aDDLogInstance", ddlog: aDDLogInstance)
+        DDLogError("Error from aDDLogInstance", ddlog: aDDLogInstance)
     }
 
 	func applicationWillTerminate(aNotification: NSNotification) {
